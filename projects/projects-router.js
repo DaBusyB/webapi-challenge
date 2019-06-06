@@ -38,13 +38,15 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-// router.delete('/', async (req, res) => {
-//     try {
+router.delete('/:id', async (req, res) => {
+    try {
+        const project =  await Projects.remove(req.params.id)
 
-//     } catch(error) {
-//         res.status(500).json({ message: 'Error removing the hub' })
-//     }
-// })
+        res.status(200).json({ message: 'The hub has been deleted.' })
+    } catch(error) {
+        res.status(500).json({ message: 'Error removing the hub' })
+    }
+})
 
 router.get('/:id/actions', async (req, res) => {
     try {
